@@ -1,0 +1,340 @@
+.mr-1 {
+    margin-left: 0.25rem !important;
+    margin-right: 0 !important;
+}
+
+.ml-1 {
+    margin-right: 0.25rem !important;
+    margin-left: 0 !important;
+}
+
+.mr-2 {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+}
+
+.ml-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0 !important;
+}
+
+.mr-3 {
+    margin-left: 1rem !important;
+    margin-right: 0 !important;
+}
+
+.ml-3 {
+    margin-right: 1rem !important;
+    margin-left: 0 !important;
+}
+
+.mr-4 {
+    margin-left: 1.5rem !important;
+    margin-right: 0 !important;
+}
+
+.ml-4 {
+    margin-right: 1.5rem !important;
+    margin-left: 0 !important;
+}
+
+.mr-5 {
+    margin-left: 3rem !important;
+    margin-right: 0 !important;
+}
+
+.ml-5 {
+    margin-right: 3rem !important;
+    margin-left: 0 !important;
+}
+
+.pr-1 {
+    padding-left: 0.25rem !important;
+    padding-right: 0 !important;
+}
+
+.pl-1 {
+    padding-right: 0.25rem !important;
+    padding-left: 0 !important;
+}
+
+.pr-2 {
+    padding-left: 0.5rem !important;
+    padding-right: 0 !important;
+}
+
+.pl-2 {
+    padding-right: 0.5rem !important;
+    padding-left: 0 !important;
+}
+
+.pr-3 {
+    padding-left: 1rem !important;
+    padding-right: 0 !important;
+}
+
+.pl-3 {
+    padding-right: 1rem !important;
+    padding-left: 0 !important;
+}
+
+.pr-4 {
+    padding-left: 1.5rem !important;
+    padding-right: 0 !important;
+}
+
+.pl-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 0 !important;
+}
+
+.pr-5 {
+    padding-left: 3rem !important;
+    padding-right: 0 !important;
+}
+
+.pl-5 {
+    padding-right: 3rem !important;
+    padding-left: 0 !important;
+}
+
+.text-left {
+    text-align: right !important;
+}
+
+.text-right {
+    text-align: left !important;
+}
+
+.mr-auto {
+    margin-right: 0!important;
+    margin-left: auto!important;
+}
+
+.border-t-r-white {
+    border-top-left-radius: 100px;
+}
+
+.border-b-l-white {
+    border-bottom-right-radius: 100px;
+}
+
+.border-b-r-light {
+    border-bottom-left-radius: 150px;
+}
+
+.border-t-l-light {
+    border-top-right-radius: 150px;
+}
+
+.border-b-r-light:before {
+    left: 0;
+}
+
+.border-t-l-light:before {
+    right: 0;
+}
+
+.has-notification {
+    left: -2px;
+}
+
+.dropdown-menu {
+    left: auto;
+    right: 10px;
+    text-align: left;
+    border-radius: 15px 0 15px 15px;
+}
+
+.search-form button, .blog-search button {
+    right: 0;
+}
+
+.about-holder .owl-carousel .owl-dots {
+    left: 0;
+}
+
+.order-btn {
+    right: 0;
+    border-radius: 15px 0 0;
+    transform: translateX(101%);
+    -o-transform: translateX(101%);
+    -ms-transform: translateX(101%);
+    -moz-transform: translateX(101%);
+    -webkit-transform: translateX(101%);
+}
+
+.select-with-icon i {
+    right: 12px;
+}
+
+.features-holder {
+    border-radius: 15px 0 0 15px;
+}
+
+.features-details .single-detail:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.features-details .single-detail:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.features-details .single-detail:not(:first-child) {
+    border-left: 1px solid #eee;
+}
+
+.supportAccordion .card .card-header i {
+    right: 10px;
+}
+
+.blog-holder .card .tag {
+    left: 10px;
+}
+
+.input-group-prepend {
+    margin-left: 0;
+}
+
+.input-group-text {
+    border-right: 0;
+}
+
+.uploaded-block .close {
+    text-align: right;
+}
+
+.icons-header {
+    margin-right: 1rem;
+    margin-left: calc(130px + 1rem);
+}
+
+.icons-header li:not(:first-child), .subscribe-type + ul li {
+    border-left: 1px solid rgba(0,0,0,0.075);
+}
+
+.icons-header ~ .card:before {
+    right: 0;
+    margin-right: 1rem;
+}
+
+.edit-pen {
+    right: 20px;
+}
+
+.messages-holder {
+    right: 7%;
+}
+
+.bubble p {
+    border-radius: 20px 0 20px 20px;
+}
+
+.bubble.text-right p {
+    border-radius: 0 20px 20px;
+}
+
+.fa-chevron-left, .fa-arrow-left, .icofont-long-arrow-left {
+    transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
+.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice,
+.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-search--inline {
+    float: left;
+}
+
+@media (max-width: 576px) {
+
+    .single-message {
+        transform: translate(105%, 0);
+        -o-transform: translate(105%, 0);
+        -ms-transform: translate(105%, 0);
+        -moz-transform: translate(105%, 0);
+        -webkit-transform: translate(105%, 0);
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .navbar-brand {
+        margin-right: 0;
+        margin-left: 1rem;
+    }
+
+    .navbar-collapse {
+        left: 0;
+        transform: translateX(-270px);
+        -o-transform: translateX(-270px);
+        -ms-transform: translateX(-270px);
+        -moz-transform: translateX(-270px);
+        -webkit-transform: translateX(-270px);
+        box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-holder {
+        border-bottom-right-radius: 100px;
+    }
+
+    .has-notification {
+        left: -5px;
+    }
+
+    #userDropDown.dropdown-toggle {
+        margin-left: 10px;
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .text-md-left {
+        text-align: right!important;
+    }
+
+    .text-md-right {
+        text-align: left!important;
+    }
+
+    .fadeInLeft {
+        animation-name: fadeInRight;
+        -webkit-animation-name: fadeInRight;
+    }
+
+    .fadeInRight {
+        animation-name: fadeInLeft;
+        -webkit-animation-name: fadeInLeft;
+    }
+
+    .collapse .navbar-nav .nav-item .nav-link:after {
+        right: calc(50% - 3px);
+    }
+
+    .search-form {
+        right: 145px;
+        transform-origin: right;
+        -o-transform-origin: right;
+        -ms-transform-origin: right;
+        -moz-transform-origin: right;
+        -webkit-transform-origin: right;
+    }
+
+    .dropdown-menu:before {
+        right: 0;
+        border-right: 22px solid #fff;
+    }
+
+    .form-holder {
+        left: 0;
+        border-radius: 0 0 200px 0;
+    }
+
+    .view-holder.list-view .in-block {
+        padding-left: 10px;
+    }
+
+}
