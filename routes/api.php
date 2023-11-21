@@ -81,7 +81,7 @@ Route::get('get-partners', [HomeController::class,'getPartners'])->name('get-par
 Route::get('get-subscription', [HomeController::class,'getsubscription'])->name('get-subscription');
 
 
-Route::get('save-token', [HomeController::class,'saveToken'])->name('save-token');
+Route::post('save-token', [HomeController::class,'saveToken'])->name('save-token');
 Route::get('send-notification', [HomeController::class,'sendNotification'])->name('send.notification');
 
 

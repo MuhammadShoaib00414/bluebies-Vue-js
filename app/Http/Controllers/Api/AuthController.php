@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Models\DeviceToken;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\VerificationCode;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
 class AuthController extends Controller
 {
     public function register(Request $request) {
@@ -59,6 +61,38 @@ class AuthController extends Controller
 
     
     public function login(Request $request) {
+
+
+        $firebaseToken = DeviceToken::first();
+        // dd($firebaseToken->device_token);
+        $SERVER_API_KEY = 'AAAAvv1AMXk:APA91bE75aH3cloDazo2EAAJJMf5G1frycoUhTKMFG4j9W7Pc8rbvfO0FIn0igbblWK-xl8_iyYi4nAY6ym3l83Do1d_6wXVT87NooWfe0J4a-GrTjDHkxuANG7A45fR_aJyqB_DwuIz';
+  
+        $data = [
+            "registration_ids" => [$firebaseToken->device_token],
+            "notification" => [
+                "title" => 'Your OTP Code is',
+                "body" => '002211',  
+            ]
+        ];
+        $dataString = json_encode($data);
+        
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+    // dd($dataString);
+        $ch = curl_init();
+      
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+               
+        $response = curl_exec($ch);
+  
+        dd($response);
         $loginData = $request->validate([
             'phonenumber' => 'required',
             // 'checkbox' => 'required',

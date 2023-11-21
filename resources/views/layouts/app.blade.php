@@ -61,6 +61,72 @@
     <!--===============================
     SCRIPT
 ===================================-->
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+
+    var firebaseConfig = {
+        apiKey: "AIzaSyBOREN7KQCVDNvkpCTZcNBGKf1NvKs8PM4",
+        authDomain: "laravel-push-notificatio-bd67c.firebaseapp.com",
+        projectId: "laravel-push-notificatio-bd67c",
+        storageBucket: "laravel-push-notificatio-bd67c.appspot.com",
+        messagingSenderId: "820292628857",
+        appId: "1:820292628857:web:039c5aa8c9799f4e2a7fa8",
+        measurementId: "G-22G0LRE2SL"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+
+    function initFirebaseMessagingRegistration() {
+            messaging
+            .requestPermission()
+            .then(function () {
+                return messaging.getToken()
+            })
+            .then(function(token) {
+                console.log('Token is:',token);
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: 'api/save-token',
+                    type: 'POST',
+                    data: {
+                        token: token
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert('Token saved successfully.');
+                    },
+                    error: function (err) {
+                        console.log('User Chat Token Error'+ err);
+                    },
+                });
+
+            }).catch(function (err) {
+                console.log('User Chat Token Error'+ err);
+            });
+     }
+
+    messaging.onMessage(function(payload) {
+        // console.log('inside function')
+        const noteTitle = payload.notification.title;
+        console.log(noteTitle)
+        const noteOptions = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        console.log('before sending')
+        new Notification(noteTitle, noteOptions);
+        console.log('after sending')
+    });
+
+</script>
     <script src="{{ mix('/js/app.js') }}" defer></script>
     <script src="bluebies/js/jquery-3.4.1.min.js"></script>
     <script src="bluebies/js/popper.min.js"></script>
@@ -68,6 +134,10 @@
     <script src="bluebies/js/owl.carousel.min.js"></script>
     <script src="bluebies/js/mixitup.min.js"></script>
     <script src="bluebies/js/script.js"></script>
+
+    <script>
+        initFirebaseMessagingRegistration();
+    </script>
 </body>
 
 </html>

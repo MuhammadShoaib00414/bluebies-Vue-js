@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 use App\Models\FAQ;
+use App\Models\User;
 use App\Models\Contacts;
-use App\Models\Packages;
 use App\Models\Features;
+use App\Models\Packages;
+use App\Models\Partners;
+use App\Models\DeviceToken;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Partners;
 use Illuminate\Support\Facades\Mail;
-use App\Models\DeviceToken;
+
 class HomeController extends Controller
 {
     /**
@@ -54,6 +56,7 @@ class HomeController extends Controller
             $query->whereIn('package_id', $packageIds);
         }])->get();
 
+        
         // dd( $features );
         // $features will contain the features with associated package_features that match the specified package_id
         
@@ -70,7 +73,7 @@ class HomeController extends Controller
         $token = $request->token;
        
         // Check if the user_id and token combination already exist
-        $existingDevice = DeviceToken::where('token', $token)
+        $existingDevice = DeviceToken::where('device_token', $token)
             ->first();
     
         if ($existingDevice) {
@@ -83,7 +86,7 @@ class HomeController extends Controller
     
         // Create the device record
         $device = DeviceToken::create([
-            'token' => $token,
+            'device_token' => $token,
         ]);
        
         return response()->json([
@@ -97,7 +100,7 @@ class HomeController extends Controller
     {
         $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
           
-        $SERVER_API_KEY = 'XXXXXX';
+        $SERVER_API_KEY = 'AAAAvv1AMXk:APA91bE75aH3cloDazo2EAAJJMf5G1frycoUhTKMFG4j9W7Pc8rbvfO0FIn0igbblWK-xl8_iyYi4nAY6ym3l83Do1d_6wXVT87NooWfe0J4a-GrTjDHkxuANG7A45fR_aJyqB_DwuIz';
   
         $data = [
             "registration_ids" => $firebaseToken,
