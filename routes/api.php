@@ -44,11 +44,18 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('verify/{code}/{id}', 'verify');
     Route::post('forgot-password', 'forgotPassword');
     Route::post('reset-password', 'resetPassword');
+    Route::post('update-password', 'UpdatePassword');
+    Route::post('Invitation-sent', 'sendInvitation');
+    Route::get('get-invitation', 'getInvitation');
+    Route::delete('delete-invitation/{id}', 'deleteInvitation');
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('user', [AuthController::class,'user'])->name('user');
     Route::put('/user/update', [UserController::class, 'update']);
+
+    Route::put('/user/update-general-setting', [UserController::class, 'updatesetting']);
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -75,12 +82,8 @@ Route::delete('delete-coupons/{id}', [DashboardController::class, 'delete'])->na
 
 // HOME API
 Route::get('get-faqs', [HomeController::class,'getFaqs'])->name('get-faqs');
-
 Route::get('get-partners', [HomeController::class,'getPartners'])->name('get-partners');
-
 Route::get('get-subscription', [HomeController::class,'getsubscription'])->name('get-subscription');
-
-
 Route::post('save-token', [HomeController::class,'saveToken'])->name('save-token');
 Route::get('send-notification', [HomeController::class,'sendNotification'])->name('send.notification');
 

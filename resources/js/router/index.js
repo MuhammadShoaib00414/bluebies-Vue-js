@@ -7,6 +7,8 @@ import Register from '../components/Auth/Register.vue'
 import Verify from '../components/Auth/Verify.vue'
 import axios from 'axios'
 import Dashboard from '../components/Dashboard.vue'
+
+import DashboardSettings from '../components/user-dashboard/DashboardSettings.vue'
 import Unauthorized from '../components/Unauthorized.vue'
 
 
@@ -64,6 +66,16 @@ const routes = [
         path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard,
+        meta: {
+            requiresAuthAdmin: true,
+            requiresAuth: true,
+
+        },
+    },
+    {
+        path: '/dashboard-settings',
+        name: 'DashboardSettings',
+        component: DashboardSettings,
         meta: {
             requiresAuthAdmin: true,
             requiresAuth: true,

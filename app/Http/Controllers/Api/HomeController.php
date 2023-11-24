@@ -73,16 +73,16 @@ class HomeController extends Controller
         $token = $request->token;
        
         // Check if the user_id and token combination already exist
-        $existingDevice = DeviceToken::where('device_token', $token)
-            ->first();
+        // $existingDevice = DeviceToken::where('device_token', $token)
+        //     ->first();
     
-        if ($existingDevice) {
-            return response()->json([
-                'message' => 'Token not saved. Device already exists.',
-                'data' => $existingDevice,
-                'status' => 500,
-            ]);
-        }
+        // if ($existingDevice) {
+        //     return response()->json([
+        //         'message' => 'Token not saved. Device already exists.',
+        //         'data' => $existingDevice,
+        //         'status' => 500,
+        //     ]);
+        // }
     
         // Create the device record
         $device = DeviceToken::create([
@@ -100,7 +100,7 @@ class HomeController extends Controller
     {
         $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
           
-        $SERVER_API_KEY = 'AAAAvv1AMXk:APA91bE75aH3cloDazo2EAAJJMf5G1frycoUhTKMFG4j9W7Pc8rbvfO0FIn0igbblWK-xl8_iyYi4nAY6ym3l83Do1d_6wXVT87NooWfe0J4a-GrTjDHkxuANG7A45fR_aJyqB_DwuIz';
+        $SERVER_API_KEY = 'AAAAv4uFUS8:APA91bHzhmrgFqMHkeG0fi43JzCH5IatuLXG8YrFs4TokoNPaU-X656_2kp2_efHA-eaOiARx1qF7t5-3z_zCeKXUNOxWZ2Hk7OTwWY_9CBUZ1gig1EYCZ-N_MKgebTRauXGV3n9WSsY';
   
         $data = [
             "registration_ids" => $firebaseToken,

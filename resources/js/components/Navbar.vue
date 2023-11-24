@@ -63,6 +63,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="bluebies/images/user-small.png" class="d-inline-block align-bottom" alt="محمد">
                                 <div class="d-none d-md-inline-block align-bottom pr-1">
+                                    <small>مرحبا</small>
                                     <p class="m-0"> {{ user.first_name }}</p>
                                 </div>
                             </a>

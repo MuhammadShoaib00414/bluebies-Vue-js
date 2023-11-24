@@ -1,3 +1,14 @@
+importScripts('https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js');
+   
+firebase.initializeApp({
+    apiKey: "AIzaSyBNY5eE0OD35_DmuP3qf7ONDz6_XDh4DY8",
+    projectId: "bluebies-57664",
+    messagingSenderId: "822679523631",
+    appId: "1:822679523631:web:e13de1878394b0c90c91da",
+    
+});
+  
 /*
 Give the service worker access to Firebase Messaging.
 Note that you can only use Firebase Messaging here, other Firebase libraries are not available in the service worker.
@@ -10,13 +21,16 @@ Initialize the Firebase app in the service worker by passing in the messagingSen
 * New configuration for app@pulseservice.com
 */
 firebase.initializeApp({
-  apiKey: "AIzaSyBOREN7KQCVDNvkpCTZcNBGKf1NvKs8PM4",
-  authDomain: "laravel-push-notificatio-bd67c.firebaseapp.com",
-  projectId: "laravel-push-notificatio-bd67c",
-  storageBucket: "laravel-push-notificatio-bd67c.appspot.com",
-  messagingSenderId: "820292628857",
-  appId: "1:820292628857:web:039c5aa8c9799f4e2a7fa8",
-  measurementId: "G-22G0LRE2SL"
+    apiKey: "AIzaSyBNY5eE0OD35_DmuP3qf7ONDz6_XDh4DY8",
+    authDomain: "bluebies-57664.firebaseapp.com",
+    projectId: "bluebies-57664",
+    storageBucket: "bluebies-57664.appspot.com",
+    messagingSenderId: "822679523631",
+    appId: "1:822679523631:web:e13de1878394b0c90c91da",
+    measurementId: "G-HSRTYNKFSH"
+  
+
+  
 });
 
 /*

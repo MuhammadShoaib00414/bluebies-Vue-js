@@ -44,7 +44,7 @@
 ===================================-->
 
     <div class="pre-load">
-        <img src="bluebies/images/loader.gif" alt="جاري التحميل ....">
+        <!-- <img src="bluebies/images/loader.gif" alt="جاري التحميل ...."> -->
     </div>
     <div id="app">
         <app-component></app-component>
@@ -61,20 +61,20 @@
     <!--===============================
     SCRIPT
 ===================================-->
+
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyBOREN7KQCVDNvkpCTZcNBGKf1NvKs8PM4",
-        authDomain: "laravel-push-notificatio-bd67c.firebaseapp.com",
-        projectId: "laravel-push-notificatio-bd67c",
-        storageBucket: "laravel-push-notificatio-bd67c.appspot.com",
-        messagingSenderId: "820292628857",
-        appId: "1:820292628857:web:039c5aa8c9799f4e2a7fa8",
-        measurementId: "G-22G0LRE2SL"
+    const firebaseConfig = {
+    apiKey: "AIzaSyBNY5eE0OD35_DmuP3qf7ONDz6_XDh4DY8",
+    authDomain: "bluebies-57664.firebaseapp.com",
+    projectId: "bluebies-57664",
+    storageBucket: "bluebies-57664.appspot.com",
+    messagingSenderId: "822679523631",
+    appId: "1:822679523631:web:e13de1878394b0c90c91da",
+    measurementId: "G-HSRTYNKFSH"
     };
-
     firebase.initializeApp(firebaseConfig);
     const messaging = firebase.messaging();
 
@@ -101,7 +101,7 @@
                     },
                     dataType: 'JSON',
                     success: function (response) {
-                        alert('Token saved successfully.');
+                        // alert('Token saved successfully.');
                     },
                     error: function (err) {
                         console.log('User Chat Token Error'+ err);
@@ -125,6 +125,8 @@
         new Notification(noteTitle, noteOptions);
         console.log('after sending')
     });
+
+    initFirebaseMessagingRegistration();
 
 </script>
     <script src="{{ mix('/js/app.js') }}" defer></script>

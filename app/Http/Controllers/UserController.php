@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     /**
@@ -74,6 +76,33 @@ class UserController extends Controller
         }
 
         return response()->json(['message' => 'User updated successfully']);
+    }
+
+    public function updatesetting(Request $request)
+    {
+
+        $id = Auth::user()->id;
+        
+        
+        // $id =  $request->input('id');
+        // Find the subscription plan by ID
+        $updateuser = User::findOrFail($id);
+    
+        // Update the attributes
+        $updateuser->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'phonenumber' => $request->input('phonenumber'),
+            'address' => $request->input('address'),
+            'country' => $request->input('country'),
+            'companyname' => $request->input('companyname'),
+            'type' =>  $request->input('type'),
+        ]);
+    
+        return response()->json([
+            'message' => 'success',
+            'updateuser' => $updateuser,
+        ]);
     }
 
     /**
