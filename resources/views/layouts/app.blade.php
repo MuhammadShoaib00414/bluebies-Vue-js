@@ -31,7 +31,8 @@
     <link rel="stylesheet" type="text/css" href="bluebies/css/icofont.min.css">
     <link rel="stylesheet" type="text/css" href="bluebies/css/style.css">
     <link rel="stylesheet" type="text/css" href="bluebies/css/style-ar.css">
-
+    <link rel="stylesheet" type="text/css" href="bluebies/css/select2-min.css">
+   
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <![endif]-->
@@ -61,6 +62,7 @@
     <!--===============================
     SCRIPT
 ===================================-->
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80Fme_Bk0GnxbVfUVvNPdy807AAzj-TM&callback=initMap"></script> -->
 
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -136,6 +138,7 @@
     <script src="bluebies/js/owl.carousel.min.js"></script>
     <script src="bluebies/js/mixitup.min.js"></script>
     <script src="bluebies/js/script.js"></script>
+    <script src="bluebies/js/select2.min.js"></script>
 
     <script>
         initFirebaseMessagingRegistration();

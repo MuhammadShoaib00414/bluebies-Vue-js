@@ -1377,6 +1377,27 @@
     "protobufjs" "^7.2.4"
     "yargs" "^17.7.2"
 
+"@intlify/core-base@9.8.0":
+  "integrity" "sha512-UxaSZVZ1DwqC/CltUZrWZNaWNhfmKtfyV4BJSt/Zt4Or/fZs1iFj0B+OekYk1+MRHfIOe3+x00uXGQI4PbO/9g=="
+  "resolved" "https://registry.npmjs.org/@intlify/core-base/-/core-base-9.8.0.tgz"
+  "version" "9.8.0"
+  dependencies:
+    "@intlify/message-compiler" "9.8.0"
+    "@intlify/shared" "9.8.0"
+
+"@intlify/message-compiler@9.8.0":
+  "integrity" "sha512-McnYWhcoYmDJvssVu6QGR0shqlkJuL1HHdi5lK7fNqvQqRYaQ4lSLjYmZxwc8tRNMdIe9/KUKfyPxU9M6yCtNQ=="
+  "resolved" "https://registry.npmjs.org/@intlify/message-compiler/-/message-compiler-9.8.0.tgz"
+  "version" "9.8.0"
+  dependencies:
+    "@intlify/shared" "9.8.0"
+    "source-map-js" "^1.0.2"
+
+"@intlify/shared@9.8.0":
+  "integrity" "sha512-TmgR0RCLjzrSo+W3wT0ALf9851iFMlVI9EYNGeWvZFUQTAJx0bvfsMlPdgVtV1tDNRiAfhkFsMKu6jtUY1ZLKQ=="
+  "resolved" "https://registry.npmjs.org/@intlify/shared/-/shared-9.8.0.tgz"
+  "version" "9.8.0"
+
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   "integrity" "sha512-HLhSWOLRi875zjjMG/r+Nv0oCW8umGb0BgEhyX3dDX3egwZtB8PqLnjz3yedt8R5StBrzcg4aBpnh8UA9D1BoQ=="
   "resolved" "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz"
@@ -7851,6 +7872,15 @@
   dependencies:
     "html2pdf.js" "^0.9.2"
 
+"vue-i18n@^9.8.0":
+  "integrity" "sha512-Izho+6PYjejsTq2mzjcRdBZ5VLRQoSuuexvR8029h5CpN03FYqiqBrShMyf2I1DKkN6kw/xmujcbvC+4QybpsQ=="
+  "resolved" "https://registry.npmjs.org/vue-i18n/-/vue-i18n-9.8.0.tgz"
+  "version" "9.8.0"
+  dependencies:
+    "@intlify/core-base" "9.8.0"
+    "@intlify/shared" "9.8.0"
+    "@vue/devtools-api" "^6.5.0"
+
 "vue-loader@^16.8.3":
   "integrity" "sha512-7vKN45IxsKxe5GcVCbc2qFU5aWzyiLrYJyUuMz4BQLKctCj/fmCa0w6fGiiQ2cLFetNcek1ppGJQDCup0c1hpA=="
   "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-16.8.3.tgz"
@@ -7899,7 +7929,7 @@
     "@vue/compiler-sfc" "2.7.14"
     "csstype" "^3.1.0"
 
-"vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.36", "vue@^3.3.4", "vue@3.3.4":
+"vue@^3.0.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.36", "vue@^3.3.4", "vue@3.3.4":
   "integrity" "sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.3.4.tgz"
   "version" "3.3.4"

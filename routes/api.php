@@ -12,7 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\SettingsController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\Api\HomeController;
-
+use App\Http\Controllers\Api\PaymentController;
 use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use App\Models\User;
 
@@ -49,13 +49,18 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('get-invitation', 'getInvitation');
     Route::delete('delete-invitation/{id}', 'deleteInvitation');
 });
+Route::get('payment', [PaymentController::class,'index'])->name('payment');
+Route::post('/add-payment', [PaymentController::class, 'store']);
+
+
+Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('user', [AuthController::class,'user'])->name('user');
     Route::put('/user/update', [UserController::class, 'update']);
-
     Route::put('/user/update-general-setting', [UserController::class, 'updatesetting']);
 
+  
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

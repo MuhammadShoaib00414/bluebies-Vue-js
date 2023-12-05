@@ -7,9 +7,16 @@ import Register from '../components/Auth/Register.vue'
 import Verify from '../components/Auth/Verify.vue'
 import axios from 'axios'
 import Dashboard from '../components/Dashboard.vue'
-
 import DashboardSettings from '../components/user-dashboard/DashboardSettings.vue'
+import DashboardProfile from '../components/user-dashboard/DashboardProfile.vue'
+
+import DashboardSupport from '../components/user-dashboard/DashboardSupport.vue'
+import DashboardOffers from '../components/user-dashboard/DashboardOffers.vue'
+import DashboardOrders  from '../components/user-dashboard/DashboardOrders.vue'
+import UserTabs  from '../components/user-dashboard/UserTabs.vue'
+
 import Unauthorized from '../components/Unauthorized.vue'
+
 
 
 
@@ -76,6 +83,56 @@ const routes = [
         path: '/dashboard-settings',
         name: 'DashboardSettings',
         component: DashboardSettings,
+        meta: {
+            requiresAuthAdmin: true,
+            requiresAuth: true,
+
+        },
+    },
+    {
+        path: '/dashboard-profile',
+        name: 'DashboardProfile',
+        component: DashboardProfile,
+        meta: {
+            requiresAuthAdmin: true,
+            requiresAuth: true,
+
+        },
+    },
+    {
+        path: '/dashboard-support',
+        name: 'DashboardSupport',
+        component: DashboardSupport,
+        meta: {
+            requiresAuthAdmin: true,
+            requiresAuth: true,
+
+        },
+    },
+    {
+        path: '/dashboard-offers',
+        name: 'DashboardOffers',
+        component: DashboardOffers,
+        meta: {
+            requiresAuthAdmin: true,
+            requiresAuth: true,
+
+        },
+    },
+    {
+        path: '/dashboard-orders',
+        name: 'DashboardOrders',
+        component: DashboardOrders,
+        meta: {
+            requiresAuthAdmin: true,
+            requiresAuth: true,
+
+        },
+    },
+    {
+        path: '/user-tabs',
+        name: 'UserTabs',
+        component: UserTabs,
         meta: {
             requiresAuthAdmin: true,
             requiresAuth: true,

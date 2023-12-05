@@ -1,7 +1,7 @@
 <template>
     <layout>
 
-
+        <p>{{ translations.welcome }}</p>
         <!--===============================
     ABOUT
 ===================================-->
@@ -488,6 +488,7 @@ export default {
     },
     data() {
         return {
+            translations: window.translations,
             videoSource: '/assets/video/demo-video.mkv',
             Platform,
             Star,
@@ -500,6 +501,12 @@ export default {
 
     },
     methods: {
+        toggleLanguage() {
+      const index = this.languages.indexOf(this.currentLanguage);
+      const newIndex = (index + 1) % this.languages.length;
+      this.currentLanguage = this.languages[newIndex];
+      this.$i18n.locale = this.currentLanguage;
+    },
         initOwlCarousesl() {
             let aboutSlider = $('.about-holder .owl-carousel');
             // Check if the slider exists and Owl Carousel is loaded

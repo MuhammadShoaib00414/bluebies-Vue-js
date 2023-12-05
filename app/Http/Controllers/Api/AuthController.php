@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Mail\VerificationCode;
 use App\Models\User;
 use App\Models\Invitations;
 use App\Models\DeviceToken;
@@ -65,7 +66,8 @@ class AuthController extends Controller
     
     public function login(Request $request) {
    
-
+        $verificationCode = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 1, 6);
+    
         $firebaseToken = DeviceToken::first();
         // dd($firebaseToken->device_token);
         $SERVER_API_KEY = 'AAAAvv1AMXk:APA91bE75aH3cloDazo2EAAJJMf5G1frycoUhTKMFG4j9W7Pc8rbvfO0FIn0igbblWK-xl8_iyYi4nAY6ym3l83Do1d_6wXVT87NooWfe0J4a-GrTjDHkxuANG7A45fR_aJyqB_DwuIz';
@@ -105,6 +107,7 @@ class AuthController extends Controller
     
         $user = User::where('phonenumber', $loginData['phonenumber'])->first();
     
+
         if (!$user) {
             return response(['message' => 'Invalid credentials', 'status' => 'error'], 400);
         }

@@ -1,5 +1,6 @@
 <template>
   <layout>
+    
     <section class="about-holder border-b-l-white bg-light d-none d-md-block">
       <div class="container">
         <ul class="breadcrumb m-0 p-0">
@@ -17,84 +18,7 @@
 
     <section class="content-holder pb-5 move-up-2x">
       <div class="container">
-        <div class="text-left d-none d-md-block">
-          <ul class="list-unstyled list-inline m-0">
-            <li class="list-inline-item mx-1">
-              <div class="font-2x font-3x">70</div>
-              <small>عرض</small>
-            </li>
-            <li class="list-inline-item mx-1">
-              <div class="font-2x font-3x">60</div>
-              <small>طلب</small>
-            </li>
-          </ul>
-        </div>
-
-        <ul
-          class="list-unstyled list-inline d-flex justify-content-between align-items-center dach-links"
-        >
-          <li class="px-1">
-            <a href="dashboard.html" class="card small-card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <i class="icofont-home fa-2x"></i>
-                </div>
-                <p class="mt-2 mb-0">لوحة التحكم</p>
-              </div>
-            </a>
-          </li>
-          <li class="px-1">
-            <a href="dashboard-orders.html" class="card small-card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <i class="fa fa-th-large fa-2x"></i>
-                </div>
-                <p class="mt-2 mb-0">الطلبات</p>
-              </div>
-            </a>
-          </li>
-          <li class="px-1">
-            <a href="dashboard-offers.html" class="card small-card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <i class="far fa-newspaper fa-2x"></i>
-                  <span class="badge bg-primary text-white">50</span>
-                </div>
-                <p class="mt-2 mb-0">العروض</p>
-              </div>
-            </a>
-          </li>
-          <li class="px-1">
-            <a href="dashboard-support.html" class="card small-card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <i class="far fa-comments fa-2x"></i>
-                </div>
-                <p class="mt-2 mb-0">الدعم الفني</p>
-              </div>
-            </a>
-          </li>
-          <li class="px-1">
-            <a href="dashboard-profile.html" class="card small-card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <i class="icofont-file-alt fa-2x"></i>
-                </div>
-                <p class="mt-2 mb-0">ملف الشركة</p>
-              </div>
-            </a>
-          </li>
-          <li class="px-1">
-            <a href="dashboard-settings.html" class="card small-card active">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <i class="icofont-gear-alt fa-2x"></i>
-                </div>
-                <p class="mt-2 mb-0">الاعدادات</p>
-              </div>
-            </a>
-          </li>
-        </ul>
+       <UserTabs />
 
         <div class="row">
           <div class="col-md-4 col-lg-3">
@@ -361,7 +285,7 @@
                         />
                       </label>
                     </div>
-                    <div class="col-sm-6 col-lg-4">
+                    <div class="col-sm-6 col-lg-4 pt-2">
                       <label class="width-100"
                         >الاسم الأول
                         <input
@@ -604,7 +528,6 @@
                       <td>{{ invitation.invitation_date }}</td>
                       <td>
                         <a
-                          
                           class="text-danger"
                           title="حذف"
                           @click="deleteConfirmed(invitation.id)"
@@ -625,25 +548,38 @@
               >
                 <h3 class="mt-5 mb-3">الاعدادات الدفع</h3>
                 <h5 class="mt-4">الكروت المضافة مسبقا</h5>
-                <div class="card">
+                <div
+                  v-for="payment in payments"
+                  :key="payment.id"
+                  class="card mb-3"
+                >
                   <div class="card-body p-2">
                     <div class="row align-items-center">
                       <div class="col-sm-6">
+                        <!-- Assuming payment.card_image_url is the URL to the card image -->
                         <img src="bluebies/images/mastercard.png" alt=".." />
-                        <span>1234 .... .... ....</span>
+                        <span>{{ formatCardNumber(payment.card_number) }}</span>
                       </div>
                       <div class="col-sm-6 text-left">
-                        <span class="btn btn-outline-success"
-                          >البطاقة الاساسية</span
+                        <span
+                          v-if="payment.is_primary"
+                          class="btn btn-outline-success"
                         >
-                        <a href="#" title="حذف" class="text-danger px-2"
-                          ><i class="icofont-trash"></i
-                        ></a>
+                          البطاقة الاساسية
+                        </span>
+                        {{payment.id}}  
+                        <a
+
+                          @click="deletePayment(payment.id)"
+                          class="text-danger px-2"
+                        >
+                          <i class="icofont-trash"></i>
+                        </a>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="card">
+                <!-- <div class="card">
                   <div class="card-body p-2">
                     <div class="row align-items-center">
                       <div class="col-sm-6">
@@ -663,15 +599,16 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <h5 class="mt-4">إضافة كارت دفع جديد</h5>
-                <form method="post" action="payment-error.html">
+                <form @submit.prevent="handleSubmit">
                   <div class="row col-lg-8 p-0">
                     <div class="col-12">
                       <label class="width-100"
                         >رقم الكارت
                         <input
+                          v-model="cardNumber"
                           type="number"
                           placeholder="123456789"
                           class="border rounded-0 mt-1"
@@ -679,33 +616,32 @@
                       </label>
                     </div>
                     <div class="col-6 col-lg-4">
-                      <label class="width-100"
-                        >تاريخ الاصدار
-                        <select class="border rounded-0 mt-1">
-                          <option>الشهر</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                        </select>
-                      </label>
+                      <label class="width-100">تاريخ الاصدار</label>
+                      <input
+                        v-model="expiryDate"
+                        type="date"
+                        class="border rounded-0 mt-1"
+                      />
                     </div>
-                    <div class="col-6 col-lg-4">
+                    <div class="col-6 col-lg-4 pt-2">
                       <label class="width-100">
                         <select
+                          v-model="expiryYear"
                           class="border rounded-0"
                           style="margin-top: 1.9rem"
                         >
-                          <option>السنة</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
+                          <option value="" disabled selected>اختر السنة</option>
+                          <option v-for="year in years" :key="year">
+                            {{ year }}
+                          </option>
                         </select>
                       </label>
                     </div>
-                    <div class="col-sm-6 col-lg-4">
+                    <div class="col-sm-6 col-lg-4 pt-1">
                       <label class="width-100"
                         >CVV (رقم سري)
                         <input
+                          v-model="cvv"
                           type="number"
                           placeholder="123"
                           class="border rounded-0 mt-1"
@@ -718,6 +654,12 @@
                     إضافة كارت الدفع
                   </button>
                 </form>
+                <div
+                  v-if="showSuccessMessage"
+                  class="success-message alert alert-success w-50"
+                >
+                  تم تحديث الإعدادات بنجاح!
+                </div>
               </div>
 
               <div
@@ -1414,6 +1356,7 @@
 </template>
 <script>
 import Layout from "../Layout.vue";
+import UserTabs from "./UserTabs";
 import "@fortawesome/fontawesome-free/css/all.css";
 
 import axios from "axios";
@@ -1422,12 +1365,14 @@ export default {
 
   components: {
     Layout,
+    UserTabs
   },
   beforeUnmount() {},
   created() {},
 
   data() {
     return {
+      payments: [],
       currentPassword: "",
       newPassword: "",
       confirmPassword: "",
@@ -1472,6 +1417,12 @@ export default {
       discount: 0,
       loggedIn: false,
       showDiscountError: false,
+      cardNumber: "",
+      expiryDate: "",
+      expiryYear: "",
+      cvv: "",
+
+      years: [], // Array to store years
     };
   },
   watch: {
@@ -1486,6 +1437,8 @@ export default {
     },
   },
   mounted() {
+    this.getpayments();
+    this.generateYearOptions();
     // Get the authentication token from where you store it (e.g., Vuex store or local storage)
     const authToken = "Bearer " + localStorage.getItem("token"); // Replace with your storage method
     // Make an API call to fetch user data with the authentication token
@@ -1514,6 +1467,12 @@ export default {
   },
 
   methods: {
+    generateYearOptions() {
+      const currentYear = new Date().getFullYear();
+      for (let i = 0; i < 10; i++) {
+        this.years.push(currentYear + i); // Generate 10 future years
+      }
+    },
     updatePassword() {
       // Retrieve data from local storage
       const dataFromLocalStorage = localStorage.getItem("user"); // Replace 'user' with your storage key
@@ -1560,6 +1519,38 @@ export default {
           this.successMessage = null;
         });
     },
+    handleSubmit() {
+      const formData = {
+        card_number: this.cardNumber,
+        expiry_date: this.expiryDate,
+        expiry_year: this.expiryYear,
+        cvv: this.cvv,
+      };
+
+      // Make an API call using Axios (assuming Axios is installed)
+      // Replace 'apiEndpoint' with your Laravel API endpoint
+      axios
+        .post("api/add-payment", formData)
+        .then((response) => {
+          this.cardNumber = "";
+          this.expiryDate = "";
+          this.expiryYear = "";
+          this.cvv = "";
+          console.log("Payment created:", response.data);
+          this.payments.push(response.data.payment);
+          // Handle success as needed
+          this.showSuccessMessage = "تم إنشاء الدفع بنجاح.";
+          this.showSuccessMessage = true;
+          setTimeout(() => {
+            this.showSuccessMessage = null;
+          }, 5000);
+        })
+        .catch((error) => {
+          console.error("Error creating payment:", error.response.data);
+          // Handle errors
+        });
+    },
+
     InvitationForm() {
       if (!this.email || !this.email.includes("@")) {
         setTimeout(() => {
@@ -1639,6 +1630,25 @@ export default {
           console.error("Error fetching coupon data:", error);
         });
     },
+    getpayments() {
+      axios
+        .get("/api/payment")
+        .then((response) => {
+          this.payments = response.data.payments; // Assuming API response contains payments array
+          console.log(this.payments);
+        })
+        .catch((error) => {
+          console.error("Error fetching payments:", error);
+        });
+    },
+    formatCardNumber(cardNumber) {
+      if (typeof cardNumber === "string" && cardNumber.length >= 4) {
+        // Use slice only if cardNumber is a string and has a length of at least 4
+        return cardNumber.slice(-4).padStart(cardNumber.length, "*");
+      }
+      return "4141";
+    },
+ 
     cancelcouponmodal() {
       this.showCouponCodeModal = false;
     },
@@ -1646,35 +1656,69 @@ export default {
       this.deleteCouponId = null;
       this.showDeleteConfirmation = false;
     },
-  
+
     deleteConfirmed(id) {
-        if (confirm('Are you sure you want to delete this invitation?')) {
-    
-    console.log(this.deleteInvitationId);
-    console.log(id);
+      if (confirm("Are you sure you want to delete this invitation?")) {
+        console.log(this.deleteInvitationId);
+        console.log(id);
 
-      axios
-        .delete(`/api/delete-invitation/${id}`)
-        .then(() => {
-          // Remove the deleted record from the invitations array
-          this.invitations = this.invitations.filter(
-            (invitation) => invitation.id !== this.deleteInvitationId
-          );
+        axios
+          .delete(`/api/delete-invitation/${id}`)
+          .then(() => {
+            // Remove the deleted record from the invitations array
+            this.invitations = this.invitations.filter(
+              (invitation) => invitation.id !== this.deleteInvitationId
+            );
 
-          // Close the confirmation dialog or do any necessary cleanup
-          // For example, if using a modal for confirmation:
-          this.cancelDelete(); // Assuming cancelDelete() closes the modal
-        })
-        .catch((error) => {
-          // Handle delete error
-          console.error("Error deleting invitation:", error);
-          // Optionally show an error message
-        });
-    }
+            // Close the confirmation dialog or do any necessary cleanup
+            // For example, if using a modal for confirmation:
+            this.cancelDelete(); // Assuming cancelDelete() closes the modal
+          })
+          .catch((error) => {
+            // Handle delete error
+            console.error("Error deleting invitation:", error);
+            // Optionally show an error message
+          });
+      }
     },
     switchTab(tabNumber) {
       this.activeTab = tabNumber;
     },
+    deletePayment(paymentId) {
+    // alert(paymentId);
+    axios
+      .delete(`/api/payments/${paymentId}`)
+      .then((response) => {
+        // Remove the deleted payment from the local array
+        this.payments = this.payments.filter(
+          (payment) => payment.id !== paymentId
+        );
+        console.log("Payment deleted:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error deleting payment:", error);
+      });
+      if (confirm("Are you sure you want to delete this invitation?")) {
+       
+        axios
+        .delete(`/api/payments/${paymentId}`)
+          .then(() => {
+            // Remove the deleted record from the invitations array
+            this.payments = this.payments.filter(
+           (payment) => payment.id !== paymentId
+        );
+
+            // Close the confirmation dialog or do any necessary cleanup
+            // For example, if using a modal for confirmation:
+            this.cancelDelete(); // Assuming cancelDelete() closes the modal
+          })
+          .catch((error) => {
+            // Handle delete error
+            console.error("Error deleting invitation:", error);
+            // Optionally show an error message
+          });
+      }
+  },
     updateSettings() {
       const authToken = "Bearer " + localStorage.getItem("token"); // Replace with your storage method
       // Check if passwords match before making the API request
@@ -1723,6 +1767,7 @@ export default {
         });
     },
   },
+ 
   watch: {
     // Reset the error message when the user updates the password or confirmation
     "user.password": function () {
